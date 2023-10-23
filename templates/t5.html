@@ -1,0 +1,39 @@
+<html>
+
+<head>
+</head>
+
+<body>
+<h1>
+    Books
+</h1>
+<table>
+    <thead>
+    <td>Author</td>
+    <td>Title</td>
+    </thead>
+
+    {% for book in books %}
+    <tr>
+        <td>{{book[0]}}</td>
+        <td>{{book[1]}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h1>
+    Add book
+</h1>
+<form method=post action="/add_book">
+    Author: <input type=text name=author>
+    Title: <input type=text name=title>
+    <input type=submit>
+</form>
+<a href=/logout>Logout</a>
+{% if session['is_admin'] %}
+<p>This content is visible only to admin users.</p>
+<a href="{{ url_for('get_users') }}">Users</a>
+{% endif %}
+</body>
+
+</html>
