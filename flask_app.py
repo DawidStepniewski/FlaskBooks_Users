@@ -69,7 +69,7 @@ def user_by_name(username):
         cur.execute("select * from users where username = ?", (username,))
         users = cur.fetchall()
 
-        return render_template('t6.html', users=users)
+        return render_template('user_page_template.html', users=users)
     else:
         abort(403)
 
@@ -83,7 +83,7 @@ def user_by_id(user_id):
         cur.execute("select * from users where id = ?", (user_id,))
         users = cur.fetchall()
 
-        return render_template('t6.html', users=users)
+        return render_template('user_page_template.html', users=users)
     else:
         abort(403)
 
@@ -97,7 +97,7 @@ def get_users():
         cur.execute("select * from users")
         users = cur.fetchall();
 
-        return render_template('t4.html', users=users)
+        return render_template('users_table_template.html', users=users)
     else:
         abort(403)
 
@@ -113,9 +113,9 @@ def index():
 
     # Sprawdzenie czy w sesji dla danego klienta zapisana jest nazwa użytkownika
     if 'user' in session:
-        return render_template('t5.html', books=books)
+        return render_template('main_page_template.html', books=books)
     else:
-        return render_template('t1.html')
+        return render_template('login_page_template.html')
 
 
 @app.route('/add_user', methods=['POST'])
